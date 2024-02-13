@@ -1,0 +1,11 @@
+{
+    "workbench.colorCustomizations": {
+        "[Default Dark+]": {
+            "editor.selectionBackground": "#6969f094",
+            "editor.selectionHighlightBackground": "#6969f094"
+        },
+        "activityBar.background": "#093603",
+        "titleBar.activeBackground": "#0D4B04",
+        "titleBar.activeForeground": "#F1FEF0"
+    }
+}
