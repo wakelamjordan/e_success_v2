@@ -159,19 +159,18 @@
     </section>
 {% endblock %}
 {% block javascripts %}
-<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js" defer></script>
 
-<!-- JS -->
-<script>
-	let typed = new Typed('.auto-typing', {
-strings: [
-' la routine', 'vos peurs', 'Vous.'
-],
-typeSpeed: 100,
-backSpeed: 100,
-loop: true,
-fadeOut: true,
-fadeOutClass: 'typed-fade-out',
-fadeOutDelay: 500
-})
-</script>{% endblock %}
+     <!-- JS -->
+    <script>
+      let typed = new Typed('.auto-typing',{
+        strings:[' la routine','vos peurs','Vous.'],
+        typeSpeed: 100,
+        backSpeed: 100,
+        loop: true,
+        fadeOut: true,
+        fadeOutClass:'typed-fade-out',
+        fadeOutDelay: 500
+      })
+    </script>
+{% endblock %}
