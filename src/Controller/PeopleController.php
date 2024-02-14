@@ -26,12 +26,17 @@ class PeopleController extends AbstractController
     }
 
     #[ROUTE('/new', name:'app_people_new',methods:['POST','GET'])]
-    public function new(Request $request){
+    public function new(EntityManagerInterface $emi,Request $request){
         //affiche du formulaire d'inscription
-        $form = $this->createForm(PeopleType::class);
+        $people=new People;
+        $form = $this->createForm(PeopleType::class,$people);
         $form->handleRequest($request);
 
-        if($)
+        if($form->isSubmitted()&&$form->isValid()){
+            $emi->persist($people);
+            $emi->flush();
+            return $this->redirectToRoute('app_people');
+        }
         return $this->render("people/form_edit.html.twig", ['form' => $form->createView()]);
     }
 

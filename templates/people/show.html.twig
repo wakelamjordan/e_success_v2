@@ -44,6 +44,7 @@
                 name=""
                 id=""
                 class="btn btn-danger"
+                onclick="deleteId({{people.id}})"
             >
                <i class="fas fa-trash-can me-1"></i> Supprimer
             </button>
@@ -55,6 +56,11 @@
     <script>
         function returnPeople(){
             document.location.href='{{path("app_people")}}';
+        }
+        function deleteId(id){
+            if(confirm('Confirmez la suppression')){
+                document.location.href='/people/delete/'+id;
+            }
         }
     </script>
 {% endblock %}
