@@ -24,9 +24,19 @@ class PeopleController extends AbstractController
             'nbre' => count($peoples)
         ]);
     }
+
+    #[ROUTE('/delete/{id}',name:'app_people_delete', methods:['GET'])]
+    public function delete(EntityManagerInterface $emi, $id){
+        $people=$emi->getRepository(People::class)->find($id);
+        $emi->remove($people);
+        $emi->flush();
+        return $this->redirectToRoute('app_people');
+    }
+
     #[Route('/edit/{id}', name: 'app_people_edit', methods: ['POST', 'GET'])]
-    public function edit(EntityManagerInterface $emi, Request $request, int $id)
-    {
+    public function edit(EntityManagerInterface $emi, Request $request, $id)
+    {   
+        $id = (int)$id;
         if ($id) {
             $people = $emi->getRepository(People::class)->find($id);
         } else {
@@ -45,9 +55,10 @@ class PeopleController extends AbstractController
         return $this->render("people/form_edit.html.twig", ['form' => $form->createView()]);
     }
 
-    #[ROUTE('/show/{id}', name: 'app_people_show')]
-    public function show(PeopleRepository $pr, int $id)
+    #[ROUTE('/show/{id}', name: 'app_people_show', methods: ['GET'])]
+    public function show(PeopleRepository $pr, $id)
     {
+        $id = (int)$id;
         $people=$pr->find($id);
         return $this->render("people/show.html.twig",[
             'people'=>$people

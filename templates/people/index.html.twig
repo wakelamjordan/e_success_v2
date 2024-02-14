@@ -6,15 +6,15 @@
 	<div class="position-relative">
 		<div class="d-flex justify-content-between py-2">
 			<div class="">
-				<a name="" id="" class="btn btn-primary" href="#" role="button">
+				<a name="" id="" class="btn btn-primary" href="javascript:newPeople()" role="button">
 					<i class="fas fa-user-plus me-1"></i>Nouveau</a>
 			</div>
 			<div class="">
-				<a name="" id="" class="btn btn-success ms-2 " href="/show/3" role="button">
+				<a name="" id="" class="btn btn-success ms-2 " href="javascript:showPeople()" role="button">
 					<i class="fas fa-eye me-1"></i>Afficher</a>
-				<a name="" id="" class="btn btn-warning ms-2 " href="javascript:edit()" role="button">
+				<a name="" id="" class="btn btn-warning ms-2 " href="javascript:editPeople()" role="button">
 					<i class="fas fa-paintbrush me-1"></i>Modifier</a>
-				<a name="" id="" class="btn btn-danger ms-2 " href="#" role="button">
+				<a name="" id="" class="btn btn-danger ms-2 " href="javascript:deletePeople()" role="button">
 					<i class="fas fa-trash-can me-1"></i>Supprimer</a>
 			</div>
 		</div>
@@ -65,3 +65,116 @@
 		</div>
 	</div>
 {% endblock %}
+{% block script %}
+	<script>
+		function checked_id(checkboxes){
+			//récupération de l'id du checkbox selectionné
+			let array_id=[];
+			checkboxes.forEach((checkbox)=>{
+				array_id.push(checkbox.id);
+			});
+			return array_id;
+		}
+
+		function action(url_action){
+
+			const checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkbox_list"]:checked');
+			let array_id = checked_id(checkboxes)
+			let count =array_id.length;
+
+			if(count>1){
+
+				alert('Veuillez selectionner une ligne');
+
+			}else{
+
+				let id = parseInt(array_id[0]);
+				let url = url_action.replace('id',id);
+				document.location.href = url;
+			}
+		}
+
+		function showPeople() {
+			// let url_action = '/people/show/id';
+			let url_action = '/people/show/id';
+			action(url_action);
+		}
+		function editPeople() {
+			let url_action = '/people/edit/id';
+			action(url_action);
+		}
+		function newPeople() {
+			let url_action = '/people/edit/id';
+			action(url_action);
+		}
+		function deletePeople() {
+			let url_action = '/people/delete/id';
+			
+			const checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkbox_list"]:checked');
+			let array_id = checked_id(checkboxes)
+			let count =array_id.length;
+
+			if(count>1){
+
+				alert('Veuillez selectionner une ligne');
+
+			}else if(confirm('Confirmez suppression?')){
+
+				let id = parseInt(array_id[0]);
+				let url = url_action.replace('id',id);
+				document.location.href = url;
+			}
+		}
+	</script>
+{% endblock %}
+
+	{# // <script>
+		// 	const url_edit = "/people/edit/id";
+	
+	
+	    //     function getCheckboxesChecked() {
+	
+	    //         let checkboxes_checked = document.querySelectorAll((input = '[type="checkbox"][name="checkbox_list"]:checked'));
+	
+	
+	    //         var selected_values = [];
+	
+	    //         checkboxes_checked.forEach(function (checkbox) {
+	
+	    //             checkbox.addEventListener("change", function () {
+	
+	    //                 selected_values.push(this.value);
+	
+	    //             });
+	    //         });
+	    //         return selected_values;
+	    //     }
+	
+	
+	    //     function edit() {
+	
+	    //         alert('eeee');
+	
+	    //         // let selected_values = getCheckboxesChecked();
+	
+	    //         // console.log(selected_values);
+	
+	    //         // let count = selected_values.length;
+	
+	
+	    //         // if (count > 1 || count == 0) {
+	
+	    //         //     alert("Veuillez sélectionner qu'un seul individu pour modifier");
+	
+	    //         // } else {
+	
+	    //         //     let id = selected_values[0];
+	
+	    //         //     const url = url_edit.replace("id", id);
+	
+	    //         //     document.location.href = url;
+	    //         // }
+	    //     }
+		// </script> #}
+
+

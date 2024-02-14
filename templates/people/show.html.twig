@@ -33,7 +33,7 @@
                 name=""
                 id=""
                 class="btn btn-primary"
-                onclick="window.location.href='people/'"
+                onclick="returnPeople()"
             >
                Retour à la liste
             </button>
@@ -50,4 +50,11 @@
         </div>
         
     </div>
+{% endblock %}
+{% block script %}
+    <script>
+        function returnPeople(){
+            document.location.href='{{path("app_people")}}';
+        }
+    </script>
 {% endblock %}
