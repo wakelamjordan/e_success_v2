@@ -1,36 +1,4 @@
-const url_edit = "/people/edit/id";
-let checkboxes_checked = document.querySelectorAll(
-  (input = '[type="checkbox"][name="checkbox_list"]')
-);
-// // Réinitialiser selected_values au chargement de la page
-// document.addEventListener("DOMContentLoaded", function () {
-//   selected_values = [];
-// });
-let selected_values = [];
-checkboxes_checked.forEach(function (checkbox) {
-  checkbox.addEventListener("change", function () {
-    if (this.checked) {
-      selected_values.push(this.value);
-    } else {
-      let index = selected_values.indexOf(this.value);
-      if (index !== -1) {
-        selected_values.splice(index, 1);
-      }
-    }
-  });
-});
-function edit() {
-  let count = selected_values.length;
-  console.log(selected_values);
 
-  if (count > 1 || count == 0) {
-    alert("Veuillez sélectionner qu'un seul individu pour modifier");
-  } else {
-    let id = selected_values[0];
-    const url = url_edit.replace("id", id);
-    document.location.href = url;
-  }
-}
 // function update() {
 //   const form = document.forms.namedItem("formUser");
 

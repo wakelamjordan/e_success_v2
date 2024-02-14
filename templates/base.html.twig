@@ -113,7 +113,7 @@
         </div>
         {# main #}
         <main class="container my-3">
-		    {% block body %}{% endblock %}
+		    {%block body%}{% endblock %}
         </main>
         {# FOOTER #}
 		<footer class="container-fluid bg-black">
@@ -191,9 +191,7 @@
 			</div>
 		</footer>
 		{%block script%}
-			{% block importmap %}
-				{{ importmap('app') }}
-			{% endblock %}
-		{% endblock %}
+		
+		{%endblock%}
 	</body>
 </html>

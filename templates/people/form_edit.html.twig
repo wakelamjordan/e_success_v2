@@ -1,0 +1,64 @@
+{%extends "base.html.twig"%}
+{%block body%}
+{{form_start(form)}}
+{{form_widget(form)}}
+<div class="">
+	<a name="" id="" class="" href="{{path('app_people')}}">Retour à la liste</a>
+</div>
+<button type="submit" class="btn btn-primary">
+	Enregistrer
+</button>
+
+{{form_end(form)}}
+{%block script%}
+	<script>
+		const url_edit = "/people/edit/id";
+
+
+        function getCheckboxesChecked() {
+
+            let checkboxes_checked = document.querySelectorAll((input = '[type="checkbox"][name="checkbox_list"]:checked'));
+
+
+            var selected_values = [];
+
+            checkboxes_checked.forEach(function (checkbox) {
+
+                checkbox.addEventListener("change", function () {
+
+                    selected_values.push(this.value);
+
+                });
+            });
+            return selected_values;
+        }
+
+
+        function edit() {
+
+            alert('eeee');
+
+            // let selected_values = getCheckboxesChecked();
+
+            // console.log(selected_values);
+
+            // let count = selected_values.length;
+
+
+            // if (count > 1 || count == 0) {
+
+            //     alert("Veuillez sélectionner qu'un seul individu pour modifier");
+
+            // } else {
+
+            //     let id = selected_values[0];
+
+            //     const url = url_edit.replace("id", id);
+
+            //     document.location.href = url;
+            // }
+        }
+	</script>
+{% endblock %}
+{%endblock%}
+

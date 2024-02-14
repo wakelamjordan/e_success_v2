@@ -49,3 +49,16 @@ VALUES
     ('Jessica', 'Martinez', '1983-12-12', 'Atlanta'),
     ('Matthew', 'Rodriguez', '1998-02-28', 'Seattle'),
     ('Ashley', 'Hernandez', '1990-07-22', 'Boston');
+
+    INSERT INTO `people` (name, surname, date_birth, place_birth)
+VALUES
+    ('Alexander', 'Lee', '1986-10-12', 'Denver'),
+    ('Sophia', 'Nguyen', '1993-09-05', 'Phoenix'),
+    ('Ryan', 'Taylor', '1975-07-18', 'Philadelphia'),
+    ('Olivia', 'Kim', '1989-04-30', 'Detroit'),
+    ('Ethan', 'Chen', '1996-01-22', 'San Diego'),
+    ('Isabella', 'Lopez', '1982-11-15', 'Austin'),
+    ('Mason', 'Ng', '1990-03-08', 'Portland'),
+    ('Ava', 'Wong', '1979-12-25', 'Las Vegas'),
+    ('Noah', 'Tran', '1991-08-02', 'Minneapolis'),
+    ('Madison', 'Gomez', '1987-06-14', 'Charlotte');

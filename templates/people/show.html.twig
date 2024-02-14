@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+{% block title %}Afficher informations
+{% endblock %}
+{% block body %}
+	<div class="table-responsive">
+		<table class="table table-secondary">
+			<tr>
+				<th scope="col">Id</th>
+				<th>{{people.id}}</th>
+			</tr>
+			<tr>
+				<th scope="col">Nom</th>
+				<th>{{people.name}}</th>
+			</tr>
+			<tr>
+				<th scope="col">Prénom</th>
+				<th>{{people.surname}}</th>
+			</tr>
+			<tr>
+				<th scope="col">Date de naissance</th>
+				<th>{{people.getDateBirth()|date('d-m-Y')}}</th>
+			</tr>
+			<tr>
+				<th scope="col">Lieu de naissance</th>
+				<th>{{people.getPlaceBirth()}}</th>
+			</tr>
+		</table>
+	</div>
+    <div class="d-flex justify-content-between col-3 mx-auto">
+        <div class="d-grid gap-2">
+            <button
+                type="button"
+                name=""
+                id=""
+                class="btn btn-primary"
+                onclick="window.location.href='people/'"
+            >
+               Retour à la liste
+            </button>
+        </div>
+        <div class="d-grid gap-2">
+            <button
+                type="button"
+                name=""
+                id=""
+                class="btn btn-danger"
+            >
+               <i class="fas fa-trash-can me-1"></i> Supprimer
+            </button>
+        </div>
+        
+    </div>
+{% endblock %}

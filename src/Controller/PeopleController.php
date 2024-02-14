@@ -12,9 +12,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
+#[Route('/people')]
 class PeopleController extends AbstractController
 {
-    #[Route('/people', name: 'app_people')]
+    #[Route('/', name: 'app_people')]
     public function index(PeopleRepository $pr): Response
     {
         $peoples = $pr->findAll();
@@ -23,21 +24,34 @@ class PeopleController extends AbstractController
             'nbre' => count($peoples)
         ]);
     }
-    #[Route('/people/edit/{id}', name: 'app_people_edit', methods: ['GET'])]
-    public function edit(PeopleRepository $pr,int $id=0,Request $request)
+    #[Route('/edit/{id}', name: 'app_people_edit', methods: ['POST', 'GET'])]
+    public function edit(EntityManagerInterface $emi, Request $request, int $id)
     {
         if ($id) {
-            $people = $pr->find($id);
+            $people = $emi->getRepository(People::class)->find($id);
         } else {
-            $people=new People;
+            $people = new People;
         }
 
-        $form=$this->createForm(PeopleType::class,$people);
+        $form = $this->createForm(PeopleType::class, $people);
+
         $form->handleRequest($request);
 
-        if($form->isSubmitted()&& $form->isValid()){
-            dd('validé');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $emi->persist($people);
+            $emi->flush();
+            return $this->redirect('app_people');
         }
-        return $this->render("people/form.html.twig",['form'=>$form->createView()]);
+        return $this->render("people/form_edit.html.twig", ['form' => $form->createView()]);
+    }
+
+    #[ROUTE('/show/{id}', name: 'app_people_show')]
+    public function show(PeopleRepository $pr, int $id)
+    {
+        $people=$pr->find($id);
+        return $this->render("people/show.html.twig",[
+            'people'=>$people
+        ]);
+
     }
 }
