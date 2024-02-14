@@ -42,7 +42,7 @@
             <header>
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-fluid">
-                        <a href="/" class="navbar-brand">E-SUCCESS</a>
+                        <a href="{{path('app_home')}}" class="navbar-brand">E-SUCCESS</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 						    <span class="navbar-toggler-icon"></span>
 					    </button>
@@ -52,38 +52,38 @@
                                 class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                                 <!-- lien pour tous -->
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="acceuil">Acceuil</a>
+                                    <a class="nav-link active" aria-current="page" href="{{path('app_home')}}">Acceuil</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="magasin">Magasin</a>
+                                    <a class="nav-link disabled " aria-current="page" href="magasin">Magasin</a>
                                 </li>
                                 <!-- lien pour caisse et admin -->
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="produit">Article</a>
+                                    <a class="nav-link disabled" href="produit">Article</a>
                                 </li>
 
                                 <!-- lien pour sav et admin  -->
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="client">Client</a>
+                                    <a class="nav-link" href="{{path('app_people')}}">Client</a>
                                 </li>
 
                                 <!-- liens pour admin uniquement -->
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle disabled" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Parametre
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="user">User</a>
+                                            <a class="dropdown-item disabled" href="user">User</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="role">Role</a>
+                                            <a class="dropdown-item disabled" href="role">Role</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="xlsx">Xlsx</a>
+                                            <a class="dropdown-item disabled" href="xlsx">Xlsx</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -103,7 +103,7 @@
                                         </div>
                                     </div>
                                     {# si visiteur #}
-                                    <a href="login" class="btn btn-outline-success w-100 ">Se connecter ou s'inscrire</a>
+                                    <a href="login" class="btn btn-outline-success w-100 disabled">Se connecter ou s'inscrire</a>
                                 </li>
                             </ul>
                         </div>
@@ -190,7 +190,7 @@
 				</div>
 			</div>
 		</footer>
-		{% block javascripts %}
+		{%block script%}
 			{% block importmap %}
 				{{ importmap('app') }}
 			{% endblock %}
