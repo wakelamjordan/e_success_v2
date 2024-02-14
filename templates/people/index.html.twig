@@ -78,11 +78,17 @@
 
 		function action(url_action){
 
+
+		}
+
+		function showPeople() {
+			// let url_action = '/people/show/id';
+			let url_action = '/people/show/id';
 			const checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkbox_list"]:checked');
 			let array_id = checked_id(checkboxes)
 			let count =array_id.length;
 
-			if(count>1){
+			if(count>1||!count){
 
 				alert('Veuillez selectionner une ligne');
 
@@ -93,19 +99,26 @@
 				document.location.href = url;
 			}
 		}
-
-		function showPeople() {
-			// let url_action = '/people/show/id';
-			let url_action = '/people/show/id';
-			action(url_action);
-		}
 		function editPeople() {
 			let url_action = '/people/edit/id';
-			action(url_action);
+			const checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkbox_list"]:checked');
+			let array_id = checked_id(checkboxes)
+			let count =array_id.length;
+
+			if(count>1||!count){
+
+				alert('Veuillez selectionner une ligne');
+
+			}else{
+
+				let id = parseInt(array_id[0]);
+				let url = url_action.replace('id',id);
+				document.location.href = url;
+			}
 		}
 		function newPeople() {
-			let url_action = '/people/edit/id';
-			action(url_action);
+			let url = '/people/new';
+			document.location.href = url;
 		}
 		function deletePeople() {
 			let url_action = '/people/delete/id';
@@ -114,7 +127,7 @@
 			let array_id = checked_id(checkboxes)
 			let count =array_id.length;
 
-			if(count>1){
+			if(count>1||!count){
 
 				alert('Veuillez selectionner une ligne');
 

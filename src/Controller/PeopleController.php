@@ -25,6 +25,16 @@ class PeopleController extends AbstractController
         ]);
     }
 
+    #[ROUTE('/new', name:'app_people_new',methods:['POST','GET'])]
+    public function new(Request $request){
+        //affiche du formulaire d'inscription
+        $form = $this->createForm(PeopleType::class);
+        $form->handleRequest($request);
+
+        if($)
+        return $this->render("people/form_edit.html.twig", ['form' => $form->createView()]);
+    }
+
     #[ROUTE('/delete/{id}',name:'app_people_delete', methods:['GET'])]
     public function delete(EntityManagerInterface $emi, $id){
         $people=$emi->getRepository(People::class)->find($id);
@@ -32,6 +42,8 @@ class PeopleController extends AbstractController
         $emi->flush();
         return $this->redirectToRoute('app_people');
     }
+
+
 
     #[Route('/edit/{id}', name: 'app_people_edit', methods: ['POST', 'GET'])]
     public function edit(EntityManagerInterface $emi, Request $request, $id)
@@ -50,9 +62,10 @@ class PeopleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $emi->persist($people);
             $emi->flush();
-            return $this->redirect('app_people');
+            return $this->redirectToRoute('app_people');
+        }else{
+            return $this->render("people/form_edit.html.twig", ['form' => $form->createView()]);
         }
-        return $this->render("people/form_edit.html.twig", ['form' => $form->createView()]);
     }
 
     #[ROUTE('/show/{id}', name: 'app_people_show', methods: ['GET'])]
