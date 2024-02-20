@@ -9,23 +9,18 @@
 
 		</title>
 
-		{% include 'link.html.twig' %}
+		{% include '_link.html.twig' %}
 
 		{% block stylesheets %}
 		{% endblock %}
 
 	</head>
-	<body class="d-flex flex-column ">
 
-		{% include 'header.html.twig' %}
-
-		{%block main%}
-		{% endblock %}
-
-		{% include 'footer.html.twig' %}
+	{%block body%}
 
 		{%block script%}
 		{% endblock %}
 
-	</body>
+	{% endblock %}
+	
 </html>
