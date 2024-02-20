@@ -15,12 +15,23 @@
 		{% endblock %}
 
 	</head>
+		<body class="d-flex flex-column ">
+
+        {% include '_header.html.twig' %}
+
+        <main class="container my-3">
 
 	{%block body%}
 
-		{%block script%}
-		{% endblock %}
+
 
 	{% endblock %}
+	        </main>
+
+        {% include '_footer.html.twig' %}
+				{%block script%}
+		{% endblock %}
+
+	</body>
 	
 </html>
