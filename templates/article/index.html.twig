@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+
+<div class="m-auto w70 my-4">
+    <h1 class="titre text-dark center">Management des Articles </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.libelle }}</td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.price }}</td>
+                <td>
+                    <td class="d-flex justify-content-between px-4">
+                        <a class="btn btn-sm btn-success" href="{{ path('app_article_show', {'id': article.id}) }}"><i class="fab fa-connectdevelop"></i> Afficher</a>
+                        <a class="btn btn-sm btn-primary" href="{{ path('app_article_edit', {'id': article.id}) }}"><i class="fab fa-codepen"></i> Modifier</a>
+                    </td>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">AUCUNE INFORMATION..</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between py-2">
+        <a href="{{ path('app_article_new') }}" class="btn btn-md btn-primary"><i class="fab fa-medrt"></i> Nouvel Article</a>
+        <a href="javascript:writeExcel()" class="btn btn-md btn-success"><i class="fas fa-file-excel"></i> Excel</a>
+    </div>
+
+</div>
+{% endblock %}
