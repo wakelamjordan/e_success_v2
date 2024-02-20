@@ -62,3 +62,6 @@ VALUES
     ('Ava', 'Wong', '1979-12-25', 'Las Vegas'),
     ('Noah', 'Tran', '1991-08-02', 'Minneapolis'),
     ('Madison', 'Gomez', '1987-06-14', 'Charlotte');
+
+
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('4321');
